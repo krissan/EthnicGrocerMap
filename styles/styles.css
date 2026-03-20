@@ -1,0 +1,504 @@
+:root {
+  --sea-teal: #0aa6b4;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Legend ---------- */
+
+.layer-legend {
+  max-width: 15.625rem;
+  margin-right: 1rem;
+  padding: 0.5rem 0.625rem;
+  background: #f6f1ea;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.layer-legend h4 {
+  margin: 0 0 0.375rem;
+  font-size: 0.875rem;
+}
+
+.layer-legend label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+}
+
+.layer-legend .legend-panel {
+  display: block;
+}
+
+.layer-classes-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.125rem;
+}
+
+.layer-classes-swatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 0.0625rem solid #555;
+}
+
+.layer-classes-swatch-circle {
+  display: inline-block;
+  background-color: #747575;
+  border: 0.0625rem solid #fff;
+  border-radius: 50%;
+}
+
+.legend-filter {
+  margin: 0.5rem 1rem 1.75rem;
+}
+
+.legend-filter-label {
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+#region-filter {
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+}
+
+.legend-about {
+  margin-right: -0.63rem;
+  margin-bottom: -0.5rem;
+  margin-left: -0.63rem;
+  background: #efe7dd;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.legend-about-summary {
+  padding: 0.75rem 0.75rem 0.5rem;
+}
+
+.legend-about-body {
+  padding: 0 0.75rem 0.75rem;
+}
+
+.legend-close {
+  display: none;
+}
+
+.legend-toggle-btn {
+  display: none;
+}
+
+/* ---------- Reset control ---------- */
+
+.reset-control a {
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ---------- Marker icons ---------- */
+
+.leaflet-marker-icon img {
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0 0.125rem 0.125rem rgba(0, 0, 0, 0.25));
+}
+
+.store-icon-img {
+  display: block;
+  transform-origin: center;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+.store-divicon:hover .store-icon-img {
+  transform: scale(1.25);
+}
+
+.store-divicon:is-selected .store-icon-img {
+  transform: scale(1.25);
+  filter: drop-shadow(0 0.1875rem 0.1875rem rgba(0, 0, 0, 0.5));
+}
+
+/* ---------- Leaflet popup shell ---------- */
+
+.leaflet-popup-content {
+  width: min(26.25rem, 86vw);
+  margin: 0;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 1rem;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: transparent;
+  box-shadow: none;
+}
+
+.leaflet-popup-close-button {
+  z-index: 9999;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  margin: 0.25rem 0.5rem;
+  padding: 0.35rem;
+  background: rgba(246, 241, 234, 0.95);
+  border-radius: 999rem;
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.2);
+  color: #111 !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.25rem !important;
+}
+
+.leaflet-popup-close-button:hover {
+  filter: brightness(0.9);
+}
+
+/* ---------- SEA popup card ---------- */
+
+.sea-card {
+  box-sizing: border-box;
+  width: min(26.25rem, 86vw);
+  padding: 1.375rem 1.375rem 1.125rem;
+  overflow: hidden;
+  background: #f6f1ea;
+  border-radius: 0.875rem;
+  color: #111;
+}
+
+.sea-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.125rem;
+  margin-bottom: 1.125rem;
+}
+
+.sea-header img {
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0 0.125rem 0.125rem rgba(0, 0, 0, 0.25));
+}
+
+.sea-header .popup-flag {
+  flex: 0 0 auto;
+  width: 2.875rem;
+  height: 2.875rem;
+}
+
+.sea-title {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: 0.03125rem;
+  text-transform: uppercase;
+}
+
+.sea-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.sea-row {
+  display: grid;
+  grid-template-columns: 7.75rem 1fr;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.sea-label {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.sea-value {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+
+.sea-text,
+.sea-plain {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sea-linkish,
+.sea-card a {
+  color: var(--sea-teal);
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-thickness: 0.1875rem;
+  text-underline-offset: 0.375rem;
+  overflow-wrap: anywhere;
+}
+
+.sea-card a:hover {
+  filter: brightness(0.6);
+}
+
+.sea-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sea-item {
+  line-height: 1.15;
+}
+
+.sea-recipes {
+  position: relative;
+  padding-right: 3.5rem;
+}
+
+.sea-star {
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #f2c318;
+  border: 0.125rem solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.75rem;
+  box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.18);
+  transform: translateY(-50%);
+}
+
+.sea-star-icon {
+  color: #111;
+  font-size: 1.25rem;
+  line-height: 1;
+  transform: rotate(-8deg);
+}
+
+.sea-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 0.125rem solid rgba(0, 0, 0, 0.08);
+}
+
+.sea-footer--card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 2.5rem;
+  margin-right: -1.375rem;
+  margin-bottom: -1.125rem;
+  margin-left: -1.375rem;
+  padding: 1.25rem 1.375rem;
+  background: #efe7dd;
+  border-top: 0;
+}
+
+.sea-address {
+  margin-top: 0.25rem;
+  color: #111;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.sea-directions {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.5rem;
+  width: 9rem;
+  color: var(--sea-teal);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none !important;
+  text-transform: capitalize;
+}
+
+.sea-dir-label {
+  font-size: 1rem;
+  text-decoration: underline;
+  text-decoration-thickness: 0.1875rem;
+  text-underline-offset: 0.375rem;
+}
+
+.sea-dir-icon {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.375rem solid var(--sea-teal);
+  border-radius: 0.75rem;
+  transform: rotate(45deg);
+}
+
+.sea-dir-icon::after {
+  content: "↗";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--sea-teal);
+  font-size: 2.2rem;
+  line-height: 1;
+  transform: rotate(-45deg);
+}
+
+/* ---------- Medium screens ---------- */
+
+@media (max-width: 48em) {
+  .layer-legend {
+    display: none;
+  }
+
+  .layer-legend.is-open {
+    display: block;
+    right: 0.75rem;
+    left: 0.75rem;
+    max-width: none;
+  }
+
+  #region-filter {
+    width: 100%;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 37.5em) {
+  .layer-legend {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .layer-legend .legend-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0.75rem;
+    background: #f6f1ea;
+    border: 0.0625rem solid rgba(0, 0, 0, 0.15);
+    border-radius: 62.4375rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .legend-toggle-btn {
+    display: inline-flex;
+  }
+
+  .layer-legend .legend-panel {
+    display: none;
+    width: min(92vw, 20rem);
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: #f6f1ea;
+    border-radius: 1rem;
+    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
+  }
+
+  .layer-legend.is-open .legend-panel {
+    display: block;
+  }
+
+  .legend-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.625rem;
+  }
+
+  .legend-close {
+    display: block;
+    background: transparent;
+    border: none;
+    font-size: 1.125rem;
+    cursor: pointer;
+  }
+
+  .leaflet-top.leaflet-right {
+    margin-right: 1rem;
+  }
+
+  .leaflet-popup-content-wrapper {
+    overflow: visible !important;
+    border-radius: 1.125rem;
+  }
+
+  .leaflet-popup-content {
+    width: min(92vw, 21.25rem);
+    margin: 0;
+  }
+
+  .sea-card {
+    width: 100%;
+    max-height: min(72vh, 35rem);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sea-title {
+    font-size: 1.6rem;
+    line-height: 0.95;
+  }
+
+  .sea-label {
+    font-size: 1.25rem;
+  }
+
+  .sea-value {
+    font-size: 1.375rem;
+  }
+
+  .sea-footer--card {
+    grid-template-columns: 1fr 8.25rem;
+    column-gap: 1rem;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+  }
+
+  .sea-address {
+    font-size: 0.95rem;
+    line-height: 1.15;
+    word-break: break-word;
+  }
+
+  .sea-directions {
+    justify-self: end;
+    width: auto;
+    min-width: 7.5rem;
+  }
+
+  .sea-dir-label {
+    font-size: 1.125rem;
+  }
+}
